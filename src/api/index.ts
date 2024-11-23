@@ -6,11 +6,11 @@ const client = axios.create({
 })
 
 async function getAlbums() {
-    return await client.get<Album[]>('/albums').then(({ data }) => data)
+    return await client.get<{ albums: Album[] }>('/albums').then(({ data }) => data.albums)
 }
 
 async function getAlbumPhotos(albumId: Album['id']) {
-    return client.get<Photo[]>(`/albums/${albumId}/photos`).then(({ data }) => data)
+    return client.get<{ photos: Photo[] }>(`/albums/${albumId}/photos`).then(({ data }) => data.photos)
 }
 
 export default {

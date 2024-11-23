@@ -24,7 +24,7 @@ const photos = ref<Photo[]>([])
 
 async function getAlbums() {
   const data = await api.getAlbums()
-  if (!data.length) {
+  if (data.length === 0) {
     return
   }
   albums.value = data
@@ -35,14 +35,14 @@ async function getAlbumPhotos(albumId: Album['id']) {
     photos.value = []
   }
   const data = await api.getAlbumPhotos(albumId)
-  if (!data.length) {
+  if (data.length === 0) {
     return
   }
   photos.value = data
 }
 
 watch(() => selectedAlbumID.value, (albumId) => {
-  if (!albumId) {
+  if (albumId === undefined) {
     return
   }
   getAlbumPhotos(albumId)

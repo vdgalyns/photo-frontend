@@ -6,7 +6,7 @@
     >
       <img
           :class="classes.originalPhoto"
-          :src="originalUrl"
+          :src="originalURL"
           alt="original photo"
       />
     </div>
