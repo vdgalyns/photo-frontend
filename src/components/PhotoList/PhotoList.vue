@@ -2,14 +2,14 @@
   <div :class="classes.photoList">
     <PhotoListItem
         v-for="(photo, index) in photos"
-        :key="photo.id"
+        :key="index"
         :photo="photo"
         @click="showFullscreen(index)"
     />
 
     <FullscreenPhotoViewer
         v-if="isFullscreen"
-        :originalURL="photos[currentPhotoIndex].originalURL"
+        :full-url="photos[currentPhotoIndex].fullUrl"
         @next="showNextPhoto"
         @previous="showPreviousPhoto"
         @close="closeFullscreen"

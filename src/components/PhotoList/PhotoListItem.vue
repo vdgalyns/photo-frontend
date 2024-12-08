@@ -2,7 +2,7 @@
   <div :class="classes.photoListItem">
     <img
         :class="classes.previewPhoto"
-        :src="photo.previewURL"
+        :src="photo.previewUrl"
         alt="preview photo"
         @click="onClick"
     />

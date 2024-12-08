@@ -1,6 +1,6 @@
 <template>
   <div :class="[classes.albumListItem, active ? classes.active : '']" @click="onClick">
-    {{ album.name }}
+    {{ album.title }}
   </div>
 </template>
 
