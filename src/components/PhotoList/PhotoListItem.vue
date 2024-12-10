@@ -22,8 +22,8 @@ const onClick = () => emit('click')
 
 <style module="classes">
 .photoListItem {
-  width: 128px;
-  height: 128px;
+  max-width: 256px;
+  max-height: 256px;
   cursor: pointer;
   border-radius: 4px;
   overflow: hidden;

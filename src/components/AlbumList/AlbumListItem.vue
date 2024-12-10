@@ -7,10 +7,12 @@
 <script setup lang="ts">
 import type { Album } from '../../types'
 
-defineProps<{
+withDefaults(defineProps<{
   album: Album
   active: boolean
-}>()
+}>(), {
+  active: false
+})
 const emit = defineEmits<{
   (e: 'click'): void
 }>()

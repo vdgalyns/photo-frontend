@@ -17,7 +17,7 @@
 import type { Photo } from '../types'
 import { onMounted, onUnmounted } from 'vue'
 
-defineProps<Pick<Photo, 'fullUrl'>>()
+const props = defineProps<Pick<Photo, 'fullUrl'>>()
 const emit = defineEmits<{
   (e: 'close'): void
   (e: 'next'): void
@@ -59,6 +59,7 @@ onUnmounted(() => {
   justify-content: center;
   align-items: center;
 }
+
 .fullPhoto {
   max-height: 90%;
   max-width: 100%;
