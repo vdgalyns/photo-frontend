@@ -17,7 +17,7 @@
 import type { Photo } from '../types'
 import { onMounted, onUnmounted } from 'vue'
 
-const props = defineProps<Pick<Photo, 'fullUrl'>>()
+defineProps<Pick<Photo, 'fullUrl'>>()
 const emit = defineEmits<{
   (e: 'close'): void
   (e: 'next'): void
