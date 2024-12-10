@@ -5,7 +5,7 @@
         :key="album.id"
         :album="album"
         @click="onSelect(album.id)"
-        :active=" modelValue === album.id"
+        :active="modelValue === album.id"
     />
   </div>
 </template>

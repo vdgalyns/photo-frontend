@@ -53,7 +53,13 @@ const showPreviousPhoto = () => {
 <style module="classes">
 .photoList {
   display: grid;
-  grid-template-columns: repeat(6, max-content);
+  grid-template-columns: repeat(4, auto);
   gap: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .photoList {
+    grid-template-columns: repeat(2, auto);
+  }
 }
 </style>
