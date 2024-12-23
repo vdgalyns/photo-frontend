@@ -10,6 +10,8 @@
     <FullscreenPhotoViewer
         v-if="isFullscreen"
         :full-url="photos[currentPhotoIndex].fullUrl"
+        :is-first="isFirstPhoto"
+        :is-last="isLastPhoto"
         @next="showNextPhoto"
         @previous="showPreviousPhoto"
         @close="closeFullscreen"
