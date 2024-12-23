@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import type { Photo } from '../../types'
 import PhotoListItem from './PhotoListItem.vue'
-import { ref } from 'vue'
+import {computed, ref} from 'vue'
 import FullscreenPhotoViewer from '../FullscreenPhotoViewer.vue'
 
 const props = defineProps<{ photos: Photo[] }>()
@@ -36,14 +36,17 @@ const closeFullscreen = () => {
   isFullscreen.value = false
 }
 
+const isFirstPhoto = computed(() => currentPhotoIndex.value === 0)
+const isLastPhoto = computed(() => currentPhotoIndex.value === props.photos.length - 1)
+
 const showNextPhoto = () => {
-  if (currentPhotoIndex.value === props.photos.length - 1) {
+  if (isLastPhoto.value) {
     return
   }
   currentPhotoIndex.value = currentPhotoIndex.value + 1
 }
 const showPreviousPhoto = () => {
-  if (currentPhotoIndex.value === 0) {
+  if (isFirstPhoto.value) {
     return
   }
   currentPhotoIndex.value = currentPhotoIndex.value - 1

@@ -4,10 +4,13 @@
         :class="classes.overlay"
         @click="onClose"
     >
+      <Loader v-show="isLoading" />
       <img
+          v-show="!isLoading"
           :class="classes.fullPhoto"
           :src="fullUrl"
           alt="original photo"
+          @load="onImageLoad"
       />
     </div>
   </Teleport>
@@ -15,35 +18,52 @@
 
 <script setup lang="ts">
 import type { Photo } from '../types'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import Loader from './Loader.vue'
 
-defineProps<Pick<Photo, 'fullUrl'>>()
+const props = defineProps<Pick<Photo, 'fullUrl'> & {
+  isLast: boolean
+  isFirst: boolean
+}>()
 const emit = defineEmits<{
   (e: 'close'): void
   (e: 'next'): void
   (e: 'previous'): void
 }>()
 
+const isLoading = ref(true)
+const enableLoading = () => isLoading.value = true
+const disableLoading = () => isLoading.value = false
+const onImageLoad = () => disableLoading()
+watch(() => props.fullUrl, () => {
+  enableLoading()
+})
+
 const onClose = () => {
   emit('close')
 }
 
-const handleKeydown = (event: KeyboardEvent) => {
-  if (event.key === 'ArrowLeft') {
+const onKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape') {
+    emit('close')
+    return
+  }
+
+  if (event.key === 'ArrowLeft' && !props.isFirst) {
     emit('previous')
     return
   }
 
-  if (event.key === 'ArrowRight') {
+  if (event.key === 'ArrowRight' && !props.isLast) {
     emit('next')
   }
 }
 
 onMounted(() => {
-  document.addEventListener('keydown', handleKeydown)
+  document.addEventListener('keydown', onKeydown)
 })
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeydown)
+  document.removeEventListener('keydown', onKeydown)
 })
 </script>
 
