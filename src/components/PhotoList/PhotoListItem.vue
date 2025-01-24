@@ -22,8 +22,8 @@ const onClick = () => emit('click')
 
 <style module="classes">
 .photoListItem {
-  max-width: 256px;
-  max-height: 256px;
+  width: 128px;
+  height: 128px;
   cursor: pointer;
   border-radius: 4px;
   overflow: hidden;
@@ -35,5 +35,12 @@ const onClick = () => emit('click')
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .photoListItem {
+    width: 64px;
+    height: 64px;
+  }
 }
 </style>
